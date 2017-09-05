@@ -321,6 +321,10 @@ export default class Autosuggest extends Component {
     this.updateHighlightedSuggestion(sectionIndex, itemIndex);
   };
 
+  onSuggestionTouchMove = function(e) {
+    this.justSelectedSuggestion = false;
+  };
+
   highlightFirstSuggestion = () => {
     this.updateHighlightedSuggestion(this.props.multiSection ? 0 : null, 0);
   };
@@ -419,6 +423,7 @@ export default class Autosuggest extends Component {
       onMouseLeave: this.resetHighlightedSuggestionOnMouseLeave,
       onMouseDown: this.onSuggestionMouseDown,
       onTouchStart: this.onSuggestionMouseDown, // Because on iOS `onMouseDown` is not triggered
+      onTouchMove: this.onSuggestionTouchMove,
       onClick: this.onSuggestionClick
     };
   };
